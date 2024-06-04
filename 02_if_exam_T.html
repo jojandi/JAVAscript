@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        // 1. 15와 20이 주어졌을 때 17이 그 사이에 있는지 확인
+        let a = 15,
+            b = 20,
+            c = 17; 
+            // -> 하드코딩
+            // c = prompt("값을 입력해주세요. ");
+            // -> 동적코딩
+
+        if(c >= a && c <= b){
+            console.log(`${c}은 ${a}와 ${b}사이에 있습니다. `);
+        } else{
+            console.log(`${c}은 ${a}와 ${b}사이에 없습니다. `);
+        }
+
+
+        // 2. 온도를 입력 받음
+        // 2-1. 영하입니다(0도 포함)/영상입니다 출력
+        // 2-2. -3 입력 받을 시 영하 3도 입니다 출력
+        // 2-3. 아까 입력 받은 거 = 어제 기온(-3)
+        //      새롭게 입력받은 온도 이용(2)
+        //      어제보다 5도 높습니다 출력
+
+        // let tem = prompt("오늘의 온도는?");
+        // tem = Number(tem);
+        let tem = 6;
+        if(tem < 0){
+            console.log("영하입니다. ");
+            console.log("영하 "+(tem * -1)+"도 입니다. ");
+        } else if(tem >= 1){
+            console.log("영상입니다. ");
+            console.log("영상 "+(tem)+"도 입니다. ");
+        } else{
+            console.log("영하입니다. ");
+            console.log((tem)+"도 입니다. ");
+        }
+        // let new_tem = prompt("오늘의 온도는?");
+        // new_tem = Number(new_tem);
+        let new_tem = 6;
+        let t = 0;
+        if(new_tem < tem){
+            t = tem - new_tem;
+            console.log(`어제의 온도 : ${tem}도, 오늘의 온도 : ${new_tem}도`);
+            console.log(`오늘의 온도는 어제보다 ${t}도 낮습니다. `);
+        } else if(new_tem > tem){
+            t = new_tem - tem;
+            console.log(`어제의 온도 : ${tem}도, 오늘의 온도 : ${new_tem}도`);
+            console.log(`오늘의 온도는 어제보다 ${t}도 높습니다. `);
+        } else{
+            console.log(`어제의 온도 : ${tem}도, 오늘의 온도 : ${new_tem}도`);
+            console.log(`오늘의 온도는 어제와 같습니다. `);
+        }
+
+
+        // 3. 두 수를 입력받고(또는 하드코딩하고)
+        // a와 b에 저장 해 놓고
+        // 둘 중에 큰 값 출력
+        let a1 = 5,
+            b1 = 3;
+
+        if(a1 < b1){
+            console.log("b =",b1)
+        } else if(a1 > b1){
+            console.log("a =",a1)
+        } else{
+            console.log("a = b")
+        }
+
+
+        // 조금 어려운 문제
+
+        // 4. 입력받은 숫자(또는 하드코딩한 값)가
+        // 10의 자리와 1의 자리가 같은지 판단
+        // 22 : 같음
+        // 23 : 다름
+        
+        let i = prompt("숫자를 입력하세요");
+        i = Number(i);
+        let i1 = (i % 10), // 일의 자리
+            i10 = (parseInt)(i / 10); //십의 자리
+        console.log(i1);
+        console.log(i10);
+        if(i1 == i10){
+            console.log("십의 자리와 일의 자리의 값이 같음")
+        } else{
+            console.log("십의 자리와 일의 자리의 값이 다름")
+        }
+        
+
+        // 5. 사각형에 점이 포함되는지
+        // 좌상단 모서리 좌표
+        let x41 = 10,
+            y41 = 20;
+        // 우하단 모서리 좌표
+        let x42 = 90,
+            y42 = 100;
+        //
+        let x43 = 0,
+            y43 = 0;
+
+        let xx = 1,
+            yy = 1;
+
+        if(x43 >= x41 && x43 <= x42){
+            xx = 1
+        } else{
+            xx = 0;
+        }
+        if(y43 >= y41 && y43 <= y42){
+            yy = 1
+        } else{
+            yy = 0;
+        }
+        if(xx && yy){
+            console.log(`사각형 안에 들어와있습니다. `);
+            // console.log(xx);
+            // console.log(yy);
+        } else{
+            console.log(`사각형 안에서 벗어났습니다. `);
+            // console.log(xx);
+            // console.log(yy);
+        }
+
+        // 선생님 방식
+        if((x43 >= x41 && x43 <= x42) 
+            && (y43 >= y41 && y43 <= y42)){
+            console.log(`사각형 안에 들어와있습니다. `);
+        } else{
+            console.log(`사각형 안에서 벗어났습니다. `);
+        }
+
+
+        // 6. 125라는 값이 주어졌을 때
+        // -> 100보다 큰 수, 양수, 홀수
+        // 98이 주어졌을 떄
+        // -> 100보다 작은 수, 양수, 짝수
+        // let k = prompt("값을 입력하세요. ");
+        // k = Number(k)
+        let k = 125;
+        if(k > 100){
+            if(k % 2 == 0){
+                console.log(`${k}는 100보다 큰 수, 양수, 짝수`);
+            } else{
+                console.log(`${k}는 100보다 큰 수, 양수, 홀수`);
+            }
+        } else if(k < 100 && k >= 0){
+            if(k % 2 == 0){
+                console.log(`${k}는 100보다 작은 수, 양수, 짝수`);
+            } else{
+                console.log(`${k}는 100보다 작은 수, 양수, 홀수`);
+            }
+        } else if(k < 100 && k <= -1){
+            if(k % 2 == 0){
+                console.log(`${k}는 100보다 작은 수, 음수, 짝수`);
+            } else{
+                console.log(`${k}는 100보다 작은 수, 음수, 홀수`);
+            }
+        } else{
+            console.log(`${k}는 100과 같은 수, 양수, 짝수`);
+        }
+
+        // 선생님 방식
+        let num = 125;
+        let result = '입력한 수는 ';
+        if(num > 100){
+            result += '100보다 큰 수, '
+        } else{
+            result += '100보다 작은 수, '
+        }
+
+        if(num >= 0){
+            result += '양수, '
+        } else{
+            result += '음수, '
+        }
+
+        if(num % 2 != 0){
+            result += '홀수'
+        } else{
+            result += '짝수'
+        }
+
+        console.log(result)
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

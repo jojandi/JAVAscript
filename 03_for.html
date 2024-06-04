@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        for(let i = 0; i < 3; i++){
+            console.log(i);
+        }
+
+        let arr = [10, 20, 30];
+        console.log("옛날 for문");
+        for(let i = 0; i < arr.length; i++){
+            console.log(arr[i]);
+        }
+
+        console.log("for in");
+        // in 앞의 변수에 현재의 index가 저장됨
+        for(let i in arr){
+            console.log("i :",i, ", arr[i] :",arr[i]);
+        }
+
+        console.log("for of");
+        // java에서 향상된 for문
+        for(let i of arr){
+            console.log("i :", i);
+        }
+
+
+        // 문제풀이
+
+        // 1. 1~10까지 짝수만 출력
+        // 1-1. 증감식 이용
+        console.log("1-1. 1~10까지 짝수만 출력(증각식 이용)")
+        for(let i = 2; i <= 10; i += 2){
+            console.log(i)
+        }
+        // 1-2. if문 이용
+        console.log("1-2. 1~10까지 짝수만 출력(if문 이용)")
+        for(let i = 1; i <= 10; i++){
+            if(i % 2 == 1){
+                continue;
+            } 
+            // else가 있어도 되고 없어도 됨
+            console.log(i);
+        }
+
+        // 2. 1~10까지 한 줄에 3개씩 출력
+        console.log("2. 1~10까지 한 줄에 3개씩 출력");
+        let result= "";
+        for(let i = 1; i <= 10; i++){
+            result += i;
+            if(i != 10){
+                result += ", "; 
+                // 마지막에만 , 안 나오게
+                // ,2 이런 식으로 구현 가능
+            }
+            if(i % 3 == 0){
+                // console.log(result);
+                // result = ""; // result 초기화
+                result += "\n";
+            } 
+            // 10 출력 X -> 10은 3의 배수가 아니기 때문
+            // => \n 사용?
+            // => 남은 숫자의 개수가 3개보다 적은 경우 그냥 출력
+        }
+        console.log(result);
+
+
+        // 피라미드 4단계
+        console.log("피라미드 4단계");
+        let n = 5;
+        let re = "";
+        for(let i = 1; i <= n; i++){
+            for(let j = 1; j <= i; j++){
+                re += "+";
+            }
+            for(let j = 1; j <= n-i; j++){
+                re += ".";
+            }
+            re += "\n";
+        }
+        console.log(re);
+
+        
+        // 구구단 한 단을 한 줄에
+        console.log("구구단 한 단을 한 줄에");
+        for(let j = 2; j <= 9; j++){
+            re = '';
+            for(let i = 1; i <= 9; i++){
+                re += j + " X "+ i + " = " + (j * i) + "\t";
+            }
+            console.log(re);
+        }
+
+
+        // 구구단 세 단씩 출력
+        console.log("구구단 세 단씩 출력");
+        /*
+        for(let j = 1; j <= 9; j++){
+            re ='';
+            for(let i = 2; i <= 4; i++){
+                re += `${i} X ${j} = ${i * j}\t`;
+            }
+            console.log(re);
+        }
+        */
+
+        /*
+        9단까지만 출력 하는 방법 1
+        let max = 9;
+        for(let k = 2; k <= max; k += 3){
+            for(let j = 1; j <= 9; j++){
+                re ='';
+                for(let i = k; i <= (k+2); i++){
+                    if(i <= max){
+                        re += `${i} X ${j} = ${i * j}\t`;
+                    }
+                }
+                console.log(re);
+            }
+        }
+        */
+
+        // 9단까지만 출력하는 방법 2
+        let  dan_max = 9;
+        for(let k = 2; k <= dan_max; k += 3){
+            for(let j = 1; j <= 9; j++){
+                re ='';
+                let max = k+2;
+                if(max > dan_max){
+                    max = dan_max;
+                }
+                for(let i = k; i <= (max); i++){
+                    re += `${i} X ${j} = ${i * j}\t`;
+                }
+                console.log(re);
+            }
+        }
+
+        // 주사위 경우의 수
+        console.log("2개의 주사위를 던졌을 때 나오는 경우의 수");
+        let count = 0;
+        for(let i = 1; i <= 6; i++){
+            for(let j = 1; j <= 6; j++){
+                console.log("["+i+" "+j+"] ");
+                count ++;
+            }
+        }
+        console.log("경우의 수 : "+ count);
+
+        // 주사위 합 별로 나올 수 있는 조합
+        console.log("2개의 주사위를 던졌을 때 나오는 합 별 조합");
+        // 비효율 방법 -> 배열 사용
+        for(let k = 2; k <= 12; k++){
+            re = '합이 '+ k +'일 때 : ';
+            for(let i = 1; i <= 6; i++){
+                for(let j = 1; j <= 6; j++){
+                    if(i+j == k){
+                        re += `[${i}, ${j}] `
+                    }
+                }
+            }
+            console.log(re);
+        }
+
+
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

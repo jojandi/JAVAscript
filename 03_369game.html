@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        // continue 사용
+        for(let i = 1; i <= 50; i++){
+            let i1 = i % 10;
+            let i10 = (parseInt)(i / 10);
+
+            if((i1 == 3 || i1 == 6 || i1 == 9) && (i10 == 3 || i10 == 6 || i10 == 9)){
+                console.log(`박수👏  박수👏`);
+            } else if (i1 == 3 || i1 == 6 || i1 == 9){
+                console.log(`박수👏`);
+            } 
+            else{
+                console.log(i);
+            }
+        }
+    </script>
+</head>
+<body>
+    
+</body>
+</html>
