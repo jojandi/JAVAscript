@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        // array의 메소드(함수)
+        let arr = [2, 1, 3, 5, 0, 4];
+
+        console.log('length :',arr.length); 
+        console.log('arr 기본값 :',arr);
+        
+
+        /*
+        (~ 제일 중요 ~)
+        1. push (<-> unshift)
+         마지막에 하나 추가
+         자동으로 배열의 사이즈도 늘어남
+        */
+        arr.push(100);
+        console.log('push :',arr);
+        
+
+        /*
+        (~ 중요 ~)
+        2. unshift (<-> push)
+         맨 처음에 하나 추가(index[0])
+         자동으로 배열의 사이즈도 늘어남
+        */
+        arr.unshift(-1);
+        console.log('unshift :',arr);
+
+
+        /*
+        (~ 중요 ~)
+        3. pop (<-> shift)
+         "마지막 값"을 지우고 그 값을 돌려주는(return) 역할을 수행
+          -> 변수에 저장하지 않으면 그 값은 사라짐
+         Stack 구조 사용
+        */
+        let pop = arr.pop(); 
+        // 마지막 값을 pop라는 변수 받음(return)
+        // arr.pop(); -> 마지막 값이 사라짐
+        console.log('pop :',arr);
+        console.log('pop return:',pop);
+
+
+        /*
+        (~ 중요 ~)
+        4. shift (<-> pop)
+         "첫번째 값"을 지우고 그 값을 돌려주는(return) 역할을 수행
+          -> 변수에 저장하지 않으면 그 값은 사라짐
+         Queue 구조 사용
+        */
+        let shift = arr.shift();
+        console.log('shift :',arr);
+        console.log('shift return:',shift);
+
+
+        /*
+        5. reverse
+         배열의 순서를 거꾸로 바꿔줌
+        */
+        arr.reverse();
+        console.log('reverse : ',arr);
+        
+
+        /*
+        6. sort
+         배열을 오름차순으로 정렬
+         (내림차순 정렬 : sort -> reverse)
+        */
+        arr.sort();
+        console.log('sort : ',arr);
+        
+
+        /*
+        (~ 경쟁력 만들기 ~)
+        7. splice
+            1-1. 삭제
+             - splice(시작 index, count)
+              => 시작 index부터 count개까지 값 삭제 (시작 index 포함)
+
+             - splice(시작 index)
+              => 시작 index부터 마지막까지 값 삭제 (시작 index 포함)
+
+            1-2. 삽입
+             - splice(시작 index, count, 추가할 값)
+              => 시작 index부터 count개까지 값 삭제 
+                -> 그 자리에 추가할 값을 넣음
+              => count의 값을 0으로 하면 삭제 없이 값 삽입 가능
+        */
+        // arr : 0, 1, 2, 3, 4, 5
+        // index 2에서부터 3개의 값 삭제(index 2, 3, 4)
+        let arr_s = arr.splice(2, 3);
+        console.log('splice(2, 3) : ',arr); // 0, 1, 5
+        console.log('splice return : ',arr_s); // 2, 3, 4
+
+        // arr : 0, 1, 5
+        arr_s = arr.splice(1);
+        console.log('splice(1) : ',arr); // 0
+        console.log('splice return : ',arr_s); // 1, 5
+
+        arr = [20, 10, 30, 50, 100, 40];
+        
+        // index -4 : 뒤에서부터 4번째 값
+        // 뒤에서부터 4번째 index부터 2개의 값 삭제
+        arr_s = arr.splice(-4, 2);
+        console.log('splice(-4, 2) : ',arr); // 20, 10, 100, 40
+        console.log('splice return : ',arr_s); // 30, 50
+
+        // arr : 20, 10, 100, 40
+        // index 1에서부터 2개의 값 삭제
+        // -> 그 자리에 3, 4, 5 삽입
+        arr_s = arr.splice(1, 2, '3', '4', '5');
+        console.log("splice(1, 2, '3', '4', '5') : ",arr); // 20, '3', '4', '5', 40
+        console.log('splice return : ',arr_s); // 10, 100
+
+        //arr : 20, '3', '4', '5', 40
+        arr_s = arr.splice(1, 0, '일');
+        console.log("splice(1, 0, '일') : ",arr); // 20, '일', '3', '4', '5', 40
+        console.log('splice return : ',arr_s); // 삭제한 것이 없기 때문에 값이 없음
+
+
+        let arr4 = [0, 1, 2, 3, 4];
+        /*
+        8. fill
+         fill(채우고 싶은 값, 시작 index, 종료 index)
+          -> 시작 index부터 종료 index-1까지 채우고 싶은 값으로 바꿈
+        */
+        // 모든 값을 8로 바꿈
+        // arr4.fill(8);
+        // index 1부터 끝까지 8로 바꿈
+        // arr4.fill(8, 1);
+        // index 1부터 index 3까지 8로 바꿈
+        arr4.fill(8, 1, 3);
+        console.log("fill(8, 1, 3) : ",arr4); // 0, 8, 8, 3, 4
+        
+
+        
+
+        // 원본은 바뀌지 않고 실행될 때만 바뀌는 함수
+
+        /*
+        (~ 중요 ~)
+        1. join
+         배열 모두를 글씨로 변경
+         join()의 괄호 안에 특정한 문자를 넣으면 값 사이사이에 넣을 수 있음
+         특정한 문자의 기본 값 : ,
+        */
+        // arr : 20, '일', '3', '4', '5', 40
+        let str = arr.join();
+        console.log("join : ",arr); // 20, '일', '3', '4', '5', 40 -> arr값 변화 없음
+        console.log('str : ',str); // 20,일,3,4,5,40
+
+        str = arr.join('-');
+        console.log("join('-') : ",str); // 20-일-3-4-5-40
+
+
+        /*
+        2. split
+         특수문자로 구분되는 문자열을 잘라서 배열로 만들어줌
+         특수문자는 사라짐
+        */
+        arr_s = str.split("-")
+        console.log('split : ',arr_s); // '20', '일', '3', '4', '5', '40'
+
+        console.log(new Date().toISOString()); 
+        // 2024-06-05T03:43:59.722Z
+        // 03:43:59.722Z 추출하기
+        let now = new Date().toISOString();
+        let date = now.split("T"); // T 기준으로 배열 생성
+        let time = date[1].split(":")
+        console.log('time :',time);
+
+
+        /*
+        (~ 중요 ~)
+        3. slice
+         slice(시작 index, 종료 index)
+         시작 index부터 종료 index 바로 앞까지 복사
+        */
+        // arr : 20, '일', '3', '4', '5', 40
+        arr_s = arr.slice(2, 5);
+        console.log("arr : ",arr); // 원본 유지
+        console.log('slice return : ',arr_s); // index 2 ~ index 4까지 복사
+
+
+        /*
+        4. concat
+         원본배열.concat(추가할 배열)
+         -> 원본배열 + 추가할 배열
+        */
+        let arr5 = ['a', 'b', 'c'];
+        arr_s = arr.concat(arr5);
+        console.log("arr : ",arr); // 원본유지
+        console.log('concat : ',arr_s);
+
+        
+        /*
+        5. toString
+         배열을 문자로 변환
+        */
+        str = arr.toString();
+        console.log("to String :", str)
+        console.log('""+arr :', ""+arr) 
+        // "" + 배열 => 문자 (toString 대체 가능)
+
+
+        // arr : 20, '일', '3', '4', '5', 40
+        /*
+        6. indexOf
+         해당하는 값이 어느 index에 있는지
+         값에 맞는 index가 존재하지 않는다면 -1 출력
+         같은 값이 있다면 먼저 나온 index 출력
+        */
+        console.log("arr.indexOf('3') :", arr.indexOf('3'));
+        console.log("arr.indexOf(100) :", arr.indexOf(100));
+        arr.push('3');
+        console.log("arr.indexOf + 3 :", arr.indexOf('3'));
+        
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        // 배열은 변수들의 집합이다. 
+
+        // javascript에서 배열을 만드는 방법
+        // 값이 없는 비어있는 배열
+        // 1
+        let arr = [];
+        // 2
+        let arr2 = new Array();
+
+        // 관리할 값을 알고 있을 떄
+        // 1
+        arr = [1, 2, 3];
+        // 2
+        arr2 = new Array(1, 2, 3);
+
+        console.log('arr[0] :', arr[0]);
+        arr[1] = 20;
+        console.log('arr[1] :', arr[1]);
+        console.log('arr[10] :', arr[10]); // undefined -> 오류 X
+        
+        arr[10] = 5;
+        console.log('arr[9] :', arr[9]); // undifiend
+        console.log('arr[10] :', arr[10]);
+        // 중간 index가 값이 비워져 있어도 상관 없음
+
+
+        console.log(arr);
+        // (11) [1, 20, 3, empty × 7, 5]
+        // (length) empty X 7 : 값이 비워져 있는 공간의 크기
+
+        console.log('arr : ' + arr);
+        // 1,20,3,,,,,,,,5
+        // 문자로 만들어서 출력
+
+        console.log('arr :',arr);
+        // (11) [1, 20, 3, empty × 7, 5]
+        // 더 자세한 정보 포함
+
+        
+        // index에 숫자가 아닌 수를 넣었을 경우
+        // 배열의 길이에 영향 X
+        arr['참'] = true;
+        console.log('arr :',arr);
+        
+        // index가 있는 것만 출력
+        // 숫자가 아닌 index도 출력
+        for(let i in arr){
+            console.log('arr index :', i);
+        }
+        
+        
+        // 문자열도 "접근만" 배열처럼 사용 가능
+        // 언어마다 한글의 사이즈를 다르게  표시할 수 있음
+        // => length값이 글자의 몇 개수와 다를 수 있음
+        let str = '휴먼교육센터';
+        console.log('str.length :', str.length);
+        console.log('str[0] :', str[0]);
+    
+        </script>
+</head>
+<body>
+    
+</body>
+</html>
