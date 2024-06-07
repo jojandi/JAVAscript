@@ -15,8 +15,8 @@
         /*
         (~ 제일 중요 ~)
         1. push (<-> unshift)
-         마지막에 하나 추가
-         자동으로 배열의 사이즈도 늘어남
+          - 마지막에 하나 추가
+          - 자동으로 배열의 사이즈도 늘어남
         */
         arr.push(100);
         console.log('push :',arr);
@@ -25,8 +25,8 @@
         /*
         (~ 중요 ~)
         2. unshift (<-> push)
-         맨 처음에 하나 추가(index[0])
-         자동으로 배열의 사이즈도 늘어남
+          - 맨 처음에 하나 추가(index[0])
+          - 자동으로 배열의 사이즈도 늘어남
         */
         arr.unshift(-1);
         console.log('unshift :',arr);
@@ -35,9 +35,9 @@
         /*
         (~ 중요 ~)
         3. pop (<-> shift)
-         "마지막 값"을 지우고 그 값을 돌려주는(return) 역할을 수행
-          -> 변수에 저장하지 않으면 그 값은 사라짐
-         Stack 구조 사용
+          - "마지막 값"을 지우고 그 값을 돌려주는(return) 역할을 수행
+            -> 변수에 저장하지 않으면 그 값은 사라짐
+          - Stack 구조 사용
         */
         let pop = arr.pop(); 
         // 마지막 값을 pop라는 변수 받음(return)
@@ -49,9 +49,9 @@
         /*
         (~ 중요 ~)
         4. shift (<-> pop)
-         "첫번째 값"을 지우고 그 값을 돌려주는(return) 역할을 수행
-          -> 변수에 저장하지 않으면 그 값은 사라짐
-         Queue 구조 사용
+          - "첫번째 값"을 지우고 그 값을 돌려주는(return) 역할을 수행
+            -> 변수에 저장하지 않으면 그 값은 사라짐
+          - Queue 구조 사용
         */
         let shift = arr.shift();
         console.log('shift :',arr);
@@ -60,7 +60,7 @@
 
         /*
         5. reverse
-         배열의 순서를 거꾸로 바꿔줌
+          - 배열의 순서를 거꾸로 바꿔줌
         */
         arr.reverse();
         console.log('reverse : ',arr);
@@ -68,8 +68,8 @@
 
         /*
         6. sort
-         배열을 오름차순으로 정렬
-         (내림차순 정렬 : sort -> reverse)
+          - 배열을 오름차순으로 정렬
+          - 내림차순 정렬 : sort -> reverse
         */
         arr.sort();
         console.log('sort : ',arr);
@@ -126,8 +126,8 @@
         let arr4 = [0, 1, 2, 3, 4];
         /*
         8. fill
-         fill(채우고 싶은 값, 시작 index, 종료 index)
-          -> 시작 index부터 종료 index-1까지 채우고 싶은 값으로 바꿈
+          - fill(채우고 싶은 값, 시작 index, 종료 index)
+            -> 시작 index부터 종료 index-1까지 채우고 싶은 값으로 바꿈
         */
         // 모든 값을 8로 바꿈
         // arr4.fill(8);
@@ -145,9 +145,9 @@
         /*
         (~ 중요 ~)
         1. join
-         배열 모두를 글씨로 변경
-         join()의 괄호 안에 특정한 문자를 넣으면 값 사이사이에 넣을 수 있음
-         특정한 문자의 기본 값 : ,
+          - 배열 모두를 글씨로 변경
+          - join()의 괄호 안에 특정한 문자를 넣으면 값 사이사이에 넣을 수 있음
+          - 특정한 문자의 기본 값 : ,
         */
         // arr : 20, '일', '3', '4', '5', 40
         let str = arr.join();
@@ -160,8 +160,8 @@
 
         /*
         2. split
-         특수문자로 구분되는 문자열을 잘라서 배열로 만들어줌
-         특수문자는 사라짐
+          - 특수문자로 구분되는 문자열을 잘라서 배열로 만들어줌
+          - 특수문자는 사라짐
         */
         arr_s = str.split("-")
         console.log('split : ',arr_s); // '20', '일', '3', '4', '5', '40'
@@ -178,8 +178,8 @@
         /*
         (~ 중요 ~)
         3. slice
-         slice(시작 index, 종료 index)
-         시작 index부터 종료 index 바로 앞까지 복사
+          - slice(시작 index, 종료 index)
+          - 시작 index부터 종료 index 바로 앞까지 복사
         */
         // arr : 20, '일', '3', '4', '5', 40
         arr_s = arr.slice(2, 5);
@@ -189,8 +189,8 @@
 
         /*
         4. concat
-         원본배열.concat(추가할 배열)
-         -> 원본배열 + 추가할 배열
+          - 원본배열.concat(추가할 배열)
+            -> 원본배열 + 추가할 배열
         */
         let arr5 = ['a', 'b', 'c'];
         arr_s = arr.concat(arr5);
@@ -200,7 +200,7 @@
         
         /*
         5. toString
-         배열을 문자로 변환
+          - 배열을 문자로 변환
         */
         str = arr.toString();
         console.log("to String :", str)
@@ -211,15 +211,86 @@
         // arr : 20, '일', '3', '4', '5', 40
         /*
         6. indexOf
-         해당하는 값이 어느 index에 있는지
-         값에 맞는 index가 존재하지 않는다면 -1 출력
-         같은 값이 있다면 먼저 나온 index 출력
+          - 해당하는 값이 어느 index에 있는지
+          - 값에 맞는 index가 존재하지 않는다면 -1 출력
+          - 같은 값이 있다면 먼저 나온 index 출력
         */
         console.log("arr.indexOf('3') :", arr.indexOf('3'));
         console.log("arr.indexOf(100) :", arr.indexOf(100));
         arr.push('3');
         console.log("arr.indexOf + 3 :", arr.indexOf('3'));
+
+
+        arr = ['a0', 'a1', 'a2', 'a3','a4'];
+        /*
+        1. forEach
+          - 모든 요소를 순회하면서 전달인자로 받은 함수를 실행
+          - 첫번째 전달인자 : 각 요소의 값
+          - 두번째 전달인자 : 그 요소의 index
+          - 세번째 전달인자 : 원본배열
+        */
+        arr.forEach(function(a, b, c, d){
+          console.log('----------------');
+          console.log('a :', a); // 첫번째 전달인자 : 각 요소의 값
+          console.log('b :', b); // 두번째 전달인자 : 그 요소의 index
+          console.log('c :', c); // 세번째 전달인자 : 원본배열
+          console.log('d :', d); // 네번째 전달인자 : undefined, 값 없음
+        });
+        arr.forEach(function(value, index, array){
+          console.log('****************');
+          console.log('value :', value); // 첫번째 전달인자 : 각 요소의 값
+          console.log('index :', index); // 두번째 전달인자 : 그 요소의 index
+          console.log('array :', array); // 세번째 전달인자 : 원본배열
+        });
+        // 보통 이렇게 많이 씀
+        let result = arr.forEach(function(value, index, array){
+          console.log('****************');
+          console.log('value :', value);
+        });
         
+        console.log('forEach return :',result); // forEach는 return값 없음
+
+
+        /*
+        2. map
+          - forEach처럼 동작
+          - return을 통해 새로운 배열을 만들어줌
+        */
+        result = arr.map(function(a, b, c, d){
+          console.log('-------- map --------');
+          console.log('a :', a); // 첫번째 전달인자 : 각 요소의 값
+          console.log('b :', b); // 두번째 전달인자 : 그 요소의 index
+          console.log('c :', c); // 세번째 전달인자 : 원본배열
+          console.log('d :', d); // 네번째 전달인자 : undefined, 값 없음
+
+          return a + '!';
+          // + '!' : 각 요소에 ! 붙여줌
+        });
+        console.log('map return :',result);
+
+        // arr.map(~~) 자체가 배열임 -> slice 등(원본을 바꾸지 않는 것)을 추가할 수 있음 => 체이닝
+        result = arr.map(function(data){
+          return data + '!';
+          // + '!' : 각 요소에 ! 붙여줌
+        }).slice(2);
+        console.log('map slice :',result);
+
+
+        /*
+        3. filter
+          - 어떤 조건에서 true인 요소들을 새로운 배열에 담아 반환
+        */
+        arr = [8, 4, 2, 8, 4, 7, 8, 5, 2, 3, 6];
+        result = arr.filter(data => {
+          // 기본값을 false로 두고 조건에 맞는 것만 true로 설정
+          // -> else를 쓰지 않아도 되어서 코딩이 짧아짐
+          let is5 = false;
+          if(data > 5){
+            is5 = true;
+          }
+          return is5;
+        })
+        console.log('filter :',result);
     </script>
 </head>
 <body>
