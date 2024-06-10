@@ -338,6 +338,46 @@
 
         // arrow 함수를 callback으로 사용
         study(a => a * 3);
+
+
+        // setTimeout while로 구현
+        let before = new Date().getTime(); // 시계 보기
+        console.log("before :", before);
+        let interval = 3 * 1000;
+
+        function doit(){
+            console.log('실행');
+        }
+
+        // let now = new Date().getTime();
+        // // now가 before보다 크거나 같음
+        // let diff = now - before;
+        // // before와 now 사이에 흐른 시간
+
+        // if(diff < interval){
+        //     now = new Date().getTime();
+        //     diff = now - before;
+        //     // diff가 inteval보다 작다면 다시 시간 보기
+            
+        //     if(diff < interval){
+        //     now = new Date().getTime();
+        //     diff = now - before;
+        //     }
+        // }
+
+        let diff = -1; // 절대 나올 수 없는 값을 선언하여 조건 충족
+        // diff가 interval보다 작을 동안 반복
+        while(diff < interval){
+            let now = new Date().getTime();
+            diff = now - before;
+            // before값은 고정, now값만 변동 -> 어느순간 조건에서 벗어남
+            // console.log('diff :', diff);
+        }
+        doit();
+        /*
+        while : 끝날 때까지 다음 줄이 실행되지 않는다(동기)
+        setTimeout : 실행되고 다음 줄이 실행된다(비동기)
+        */
     </script>
 </head>
 <body>

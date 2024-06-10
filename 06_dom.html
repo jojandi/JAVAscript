@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .red {
+            color : red;
+        }
+    </style>
+</head>
+<body>
+    <h1 id = "title">DOM 연습</h1>
+
+    <div id = "view">1번 view</div>
+    <div id = "view">2번 view</div>
+
+    <div id = "wrap">
+        <div class = "div2">안쪽 div2</div>
+        <div class = "div3">안쪽 div3</div>
+    </div>
+
+    <div id = "two" class = "div2 div3">div2</div>
+
+    <script>
+        // ~ id를 이용해서 DOM 찾기 ~
+        let title = document.getElementById("title");
+        console.log(title); // <h1 id = title> DOM 연습 </h1>
+        console.log(""+title);  
+        // 문자로 변환 => [object HTMLHeadingElement]
+        // 이 안에 원하는 값이 있다
+        // alert(title);
+
+        // 선택되는 게 없는 경우 null
+        console.log(document.getElementById("test")); //null
+
+        // id 속성의 값이 동일한 경우
+        // -> 처음에 나오는 DOM 하나만 가져옴
+        let view = document.getElementById("view");
+        console.log(view);
+        
+
+        // ~ tag명으로 DOM 찾기 ~
+        // 일치하는 모든 걸 배열로 돌려준다
+        let divs = document.getElementsByTagName("div");
+        console.log(divs); // HTMLCollection(2) [div#view, div#view, view: div#view]
+
+        // tag가 하나 -> 1개짜리 배열이 나옴
+        let h1 = document.getElementsByTagName("h1");
+        console.log(h1); // HTMLCollection [h1#title, title: h1#title]
+        
+        console.log(document.getElementsByTagName("human"));
+        // 아무것도 존재하지 않는 배열이 들어옴
+
+
+        //~ class를 이용해서 DOM 찾기 ~
+        let div2s = document.getElementsByClassName('div2')
+        console.log(div2s);
+
+
+        // ~wrap의 자식인 div2만 가져오기 ~
+        // id가 wrap인 것들을 찾아서 parent_wrap에 넣기
+        let parent_wrap = document.getElementById("wrap");
+        console.log(wrap);
+
+        // document. -> 문서 전체에서 찾기
+        // parent_wrap. -> wrap 아래에서만 찾기
+        // parent_wrap(id가 wrap인 거)에서 div2를 찾기
+        // let child_div2 = document.getElementById("wrap").getElementsByClassName("div2");
+        let child_div2 = parent_wrap.getElementsByClassName("div2");
+        console.log(child_div2);
+
+
+
+        // css 선택자로 선택하는 방법
+        let qs = document.querySelector("#wrap > .div2");
+        console.log(qs);
+
+        // querySelector : getElementById처럼 처음 DOM 하나만 가져옴
+        let css_view = document.querySelector("#view");
+        console.log(css_view);
+
+        console.log(document.querySelector("#view222")); // null
+
+
+        // querySelectorAll : getElementsByClassName/getElementsByTagName 처럼 배열로 가져옴
+        let qsa = document.querySelectorAll(".div2");
+        console.log(qsa);
+        console.log(qsa[0]); // 첫번째 것만 출력
+
+        console.log(document.querySelectorAll(".div23456")) // 비어있는 배열
+
+
+        // parentNode
+
+        // 1. div2 선택
+        let div2 = document.querySelector("#wrap .div2");
+        // 2. 부모 선택(parentNode 사용)
+        let parent = div2.parentNode;
+        console.log(parent);
+        // 3. 부모의 자식 중 div3 찾기
+        let div3 = parent.querySelector(".div3");
+        console.log(div3);
+
+
+        // classList
+
+        let two = document.querySelector("#two");
+        console.log(two.classList);
+        // DOM의 클래스를 배열형식으로 돌려줌
+        // DOMTokenList(2) ['div2', 'div3', value: 'div2 div3']
+
+        two.classList.add("div4"); // #two에 .div4가 추가됨
+
+        two.classList.remove("div3") // #two에 .div3 삭제
+
+
+        // toggle : 없으면 있게, 있으면 없게, 현재 상황을 반전시킴
+        //        : 자주 쓰이지 않음
+        two.classList.toggle("div5"); // div5 생김
+        two.classList.toggle("div5"); // div5 사라짐
+
+
+        // 해당 클래스가 존재하면 true, 존재하지 않으면 false
+        let isDiv4 = two.classList.contains("div4");
+        console.log('classList.contains - 존재하는 class :',isDiv4); // true
+        let isRed = two.classList.contains("red");
+        console.log('classList.contains - 존재하지 않는 class :', isRed); // false
+
+        // red라는 class가 없는 경우 red class 추가
+        // red라는 class가 있는 경우 red class 삭제
+        // toggle 구현
+        if(isRed == false){
+            two.classList.add("red");
+        } else{
+            two.classList.remove("red");
+        }
+
+        // 잘 안 씀 -> classList를 많이 씀
+        console.log('className :', two.className); // div2 div4 red
+        
+        
+        // Atrribute
+
+        // hasAttribute : 해당 속성이 존재한다면 true, 존재하지 않는다면 false
+        let isClass = two.hasAttribute('class');
+        console.log('hasAttribute :',isClass); // true
+
+        // getAttribute : 해당 속성의 값을 가져옴
+        let id = two.getAttribute('id');
+        console.log("getAttribute :", id); // two
+
+        console.log("getAttribute - 존재하지 않는 속성 :", two.getAttribute('href')); // null
+
+        /*
+            setAttribute 
+             - 속성과 속성값 추가
+             - 만약 추가할 속성이 원래 존재하는 거라면 기존 속성값에 덮어쓰기
+             - 속성에 'data-'를 붙이는 것이 접근성에 좋음
+        */
+        two.setAttribute("data-human", "1강의실");
+        two.setAttribute("data-human", "11강의실");
+
+
+        // 속성 지우기
+        two.removeAttribute('data-human');
+
+
+        console.log(document);
+
+    </script>
+</body>
+</html>

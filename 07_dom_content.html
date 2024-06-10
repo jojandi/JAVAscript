@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id = "captain">
+        <span>당선을  </span>    <span>    축하드립니다.</span>     
+    </div>
+
+
+    <script>
+
+        let cap = document.querySelector("div#captain");
+
+        // textContent : html 소스에 있는 text만 그대로 가져옴
+        //               빈공간(엔터, 띄어쓰기)도 가져옴 (tag는 가져오지 않음)
+        let textContent = cap.textContent;
+        console.log('textContent :', textContent); //         당선을          축하드립니다. 
+
+        // innerText : 화면에 보이는대로 가져옴, 읽을 때 자주 씀
+        //             (브라우저가 계산을 끝내고 실제로 표시한 내용)
+        let innerText = cap.innerText;
+        console.log('innerText :',innerText); // 당선을 축하드립니다.
+
+        // innerHTNL : html의 소스를 전부 다 가져옴(tag 포함)
+        let innerHTML = cap.innerHTML;
+        console.log('innerHTML :', innerHTML); //<span>당선을  </span>    <span>    축하드립니다.</span> 
+
+
+        // 내용 변경하기
+
+        // textContent, innerText : 내용 변경 가능하지만 tag까지 글씨로 인식함
+        cap.textContent = "<h1>a</h1>   b    c";
+        cap.innerText = "<h1>a1</h1>    b1    c1";
+
+        // innerHTML : 내용 변경 가능, tag까지 적용
+        cap.innerHTML = "<h1>a1</h1>    b1    c1";
+
+    </script>
+</body>
+</html>
