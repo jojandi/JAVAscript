@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        // html 속성으로 클릭 이벤트 발생시키기
+        // 수정 용이성을 생각하여 웬만하면 사용하지 않기
+        function btn2click(){
+            document.querySelector("#console").innerHTML = '버튼2 클릭<br>';
+        }
+
+        
+        window.onload = function(){
+            let btn1 = document.querySelector("#btn1");
+            console.log('btn1 :', btn1);
+
+            // 클릭 이벤트
+            // .onclick = 실행할 함수
+            // click이벤트가 발생했을 때 실행할 함수를 가지고 있는
+            // '변수'라서 딱 하나의 함수만 지정 가능
+            btn1.onclick = function(){
+                // 클릭할 때마다 콘솔에 내용 출력
+                console.log("버튼1 클릭");
+
+                // #console에 내용 넣어줌(덮어쓰기라서 여러번 눌러도 한 번만 출력된 거처럼 보임)
+                document.querySelector("#console").innerHTML = '버튼1 클릭<br>';
+            }
+
+            btn1.onclick = function(){
+                document.querySelector("#console").innerHTML = '버튼1 클릭 클릭<br>';
+            }
+
+            
+            // addEventListener(이벤트 종류, 실행 함수)
+            // 이 방법이 여러개를 관리하기 편함
+            // 여러개 적용 가능
+            let btn3 = document.querySelector("#btn3");
+            btn3.addEventListener('click', function(){
+                document.querySelector("#console").innerHTML = '버튼3 클릭<br>';
+            })
+
+            function btn3click(){
+                document.querySelector("#console").innerHTML += '버튼3 클릭 클릭<br>';
+            }
+            btn3.addEventListener('click',btn3click);
+
+            // removeEventListener : 해당 이벤트 삭제(익명함수일시 삭제 불가)
+            // btn3.removeEventListener('click', btn3click);
+
+
+            window.addEventListener('scroll', function(){
+                console.log('스크롤 변경');
+                console.log(document.documentElement.scrollTop);
+            })
+
+
+            let id = document.querySelector("#id");
+            // keydown : 키를 누르고 있을 떄
+            // id.addEventListener('keydown', function(){
+            //     console.log('keydown')
+            // })
+
+            // keyup : 누르고 있던 키를 뗄 때
+            id.addEventListener('keyup', function(event){
+                console.log('keyup', event.keyCode);
+                // javascript에선 엔터키를 13으로 인식
+                if(event.keyCode == 13){
+                    // #pw로 이동
+                    document.querySelector('#pw').focus();
+                }
+            })
+
+            document.querySelector('#pw').addEventListener('keyup', function(event){
+                if(event.keyCode == 13){
+                    document.querySelector('#login').click();
+                }
+            })
+
+            /*
+            id = admin
+            pw = 1234
+            => 로그인 버튼을 눌렀을 때 '로그인 되었습니다' 출력
+            그 외
+            => '아이디 또는 비밀번호를 확인하세요' 출력
+
+            id,pw가 아무것도 안 적힌 경우 '..는 필수입니다' 출력
+            */
+            document.querySelector('#login').addEventListener('click', function(){
+                console.log('로그인 버튼 클릭')
+                let text = document.querySelector("#id").value;
+                let pw = document.querySelector('#pw').value;
+                console.log('아이디 :', text);
+                console.log('비밀번호 :', pw);
+                
+                if((text == 'admin') && (pw == '1234')){
+                    document.querySelector("#console").innerHTML ="로그인 되었습니다. ";
+                    document.querySelector("#console").innerHTML += "<br>" + text + "님 반갑습니다. ";
+                } else{
+                    document.querySelector("#console").innerHTML ="아이디 또는 비밀번호를 확인하세요. ";
+                }
+                if(text == ''){
+                    document.querySelector("#msg").innerHTML = "아이디는 필수입니다. ";
+                    document.querySelector("#msg").style.display = "block";
+                }
+                if(pw == ''){
+                    document.querySelector("#msg").innerHTML += "<br>비밀번호는 필수입니다. ";
+                    document.querySelector("#msg").style.display = "block";
+                }
+
+                // document.querySelector("#console").innerHTML = text;
+            });
+
+        }
+    </script>
+    <style>
+        #box {
+            margin-top: 10px;
+        }
+        #login {
+            width: 177px;
+            background:#09aa5c;
+            color: white;
+            border: 1px solid #09aa5c;
+            margin-top: 5px;
+        }
+    </style>
+</head>
+<body style="height : 2000px">
+    <button type="button" id="btn1">버튼1</button>
+    <button type="button" id="btn2" onclick="btn2click()">버튼2</button>
+    <button type="button" id="btn3">버튼3</button>
+
+
+    <div id="box">
+        <input type="text" id="id" placeholder="아이디"><br>
+        <input type="password" id="pw" placeholder="비밀번호"><br>
+        <div id="msg" style="display:none; font-size: 12px; color:red;"></div>
+        <input type="button" id="login" value="로그인"><br>
+    </div>
+
+    <div id="console"></div>
+    
+</body>
+</html>
