@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>pizza</title>
+    <script>
+        window.addEventListener("load", function(){
+            let sum = "";
+            let price = 0;
+            
+            // 종류
+            // select일 때 선택된 option 가져오기(글씨 가져오기)
+            // option:checked->선택 된 것, 이후 선택된 것에 .innerText으로 글씨 가져오기
+            /*
+            document.querySelector("#types").addEventListener("change", function(){
+                let types = document.querySelector("#types").value;
+                let types_pr = document.querySelector("#types").getAttribute('price');
+                console.log(types_pr);
+                sum += types,",";
+                price += types_pr;
+            })
+            */
+
+            // 사이즈
+            /*
+            document.querySelector("#size").addEventListener("click", function(evt){
+                let size = evt.target;
+                console.log(size.value);
+                console.log(size.price);
+                sum += size.value;
+                price += size.price;
+            });
+            */
+
+            // 토핑
+            /*
+            document.querySelector("#toping").addEventListener("click", function(evt){
+                let toping = evt.target;
+                console.log(toping.value);
+                sum += "\n - " + toping.value;
+            });
+            */
+            
+
+            // :checked 잘 활용하기 !!!!!!!
+            // 주문하기
+            let order = document.querySelector("#order");
+            order.addEventListener("click", function(){
+                console.log("~주문~");
+                // 종류
+                let types = document.querySelector("#types option:checked");
+                let types_pr = types.getAttribute('price');
+                sum += types.value;
+                price += Number(types_pr);
+
+
+                // 사이즈
+                let size = document.querySelector("#size input[type='radio']:checked");
+                let size_pr = size.getAttribute('price');
+                sum += size.value;
+                price += Number(size_pr);
+
+                
+                //토핑
+                let toping = document.querySelectorAll(".toping:checked");
+                for(let i = 0; i<toping.length; i++){
+                    sum += `\n${toping[i].value}`;
+                    price += Number(toping[i].getAttribute('price'));
+                }
+
+                
+                console.log("주문내역 :", sum);
+                console.log("가격 :",price, "원");
+                let text = document.querySelector("#text").value;
+                console.log("요청사항 :", text);
+                
+            })
+
+
+        })
+    </script>
+</head>
+<body>
+    <h1> ~ 피자를 주문하자! ~ </h1>
+    <div>
+        <span>피자 종류</span><br>
+        <select id="types">
+            <option id="ch" value="치즈 피자" price="16000">치즈 피자(16000원)</option>
+            <option id="spo" value="고구마 피자" price="18000">고구마 피자(18000원)</option>
+            <option id="pe" value="페페로니 피자" price="18000">페페로니 피자(18000원)</option>
+            <option id="bul" value="불고기 피자" price="17000">불고기 피자(17000원)</option>
+        </select>
+    </div><br>
+
+    <div>
+        <span>사이즈</span>
+        <div id="size">
+            <input type="radio" id="m" value=" (M)" name="size" price="0"> M
+            <input type="radio" id="l" value=" (L)" name="size" price="3000" checked="checked"> L (+3000)
+        </div>
+    </div><br>
+
+    <div>
+        <span>토핑</span><br>
+        <div>
+            <label>
+                <input type="checkbox" class="toping" value=" - 치즈 추가" price="1000"> 치즈(+1000)
+            </label>
+            <label>
+                <input type="checkbox" class="toping" value=" - 고구마 추가" price="2000"> 고구마(+2000)
+            </label>
+            <label>
+                <input type="checkbox" class="toping" value=" - 페페로니 추가" price="2000"> 페페로니(+2000)
+            </label>
+            <label>
+                <input type="checkbox" class="toping" value=" - 불고기 추가" price="2000"> 불고기(+2000)
+            </label>
+        </div>
+    </div><br>
+
+    <div>
+        <span>요청사항 : </span>
+        <input type="text" id="text" placeholder="요청사항을 입력해주세요. ">
+    </div><br>
+
+    <div>
+        <input type="button" id="order" value="주문하기">
+    </div>
+
+
+</body>
+</html>

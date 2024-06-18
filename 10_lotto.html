@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LOTTO</title>
+    <style>
+        .circle{
+            width: 80px;
+            height: 60px;
+            border: 1px solid gray;
+            display: inline-block;
+            text-align: center;
+            line-height: 60px;
+        }
+
+        .text{
+            width: 72px;
+            height: 55px;
+            border: 0px solid;
+            line-height: 60px;
+            text-align: center;
+            font-size: 17px;
+        }
+
+        #bt1{
+            margin: 20px 0;
+        }
+    </style>
+    <script>
+        window.addEventListener("load", function(){
+
+            
+            document.querySelector("#bt1").addEventListener("click", function(){
+                let lotto = [];
+                // lotto 배열 크기가 6이 되면 멈춤
+                while(lotto.length != 6){
+                    let isDup;
+                    do{
+                        isDup = false;
+                        let tmp = parseInt(Math.random() * 45) + 1;
+                        console.log('tmp :', tmp);
+                        
+                        for(let i = 0; i < lotto.length; i++){
+                            if(lotto[i] == tmp){
+                                isDup = true;
+                                // console.log(isDup);
+                                break;
+                            }
+                        }
+                        if(!isDup){ // isDup이 false이라면(중복되지 않는다면) 배열에 값 추가
+                            lotto.push(tmp);
+                            
+                        }
+                    } while(isDup) // isDup이 true가 되면 반복
+                    console.log("lotto ",lotto);
+                    
+                    // div에 순서대로 출력
+                    for(let i = 0; i < lotto.length; i++){
+                        let text = document.querySelectorAll(".text");
+                        console.log(text[i].value);
+                        if(text[i].value == ""){
+                            document.querySelectorAll(".a")[i].innerHTML = lotto[i];
+                            document.querySelectorAll(".text")[i].style.display = "none"
+                        }
+                    }
+                }
+                
+                // 입력 받은 값과 자동으로 나오는 것(div에 출력하는 것들)을 받는 새로운 배열 생성
+                let newLotto = [];
+                for(let i = 0; i < lotto.length; i++){
+                    let a = document.querySelectorAll(".a");
+                    let text = document.querySelectorAll(".text");
+                    // 값들이 숫자가 아닌 문자이기 때문에 배열에 넣어줄 때 Number()을 사용하여 숫자로 변환
+                    if(text[i].value == ""){
+                        newLotto.push(Number(a[i].innerText));
+                    } else{
+                        newLotto.push(Number(text[i].value));
+                    }
+                }
+                console.log("newLotto : ", newLotto);
+                
+                // 올림차순 정렬
+                let x = 0;
+                for(let i = 0; i < newLotto.length; i++){
+                    for(let j = i + 1; j < newLotto.length; j++){
+                        if(newLotto[i] > newLotto[j]){
+                            x = newLotto[i];
+                            newLotto[i] = newLotto[j];
+                            newLotto[j] = x
+                        } else{
+                            console.log("----------------------")
+                        }
+                    }
+                }
+                console.log("newLotto - sort ", newLotto);
+                //join 이용해서 -로 숫자들 나누고 sort 함수 사용해서 정렬
+                // newLotto = newLotto.sort();
+                // console.log("newLotto - sort ", newLotto);
+                newLotto = newLotto.join('-');
+                console.log("newLotto - join ", newLotto);
+
+                let list = document.querySelector("#list");
+                let html = "";
+                html += "<table>";
+                html += "<tr>";
+                let text = document.querySelectorAll(".text");
+                for(let i = 0; i < newLotto.length; i++){
+                    html += "<td>" + newLotto[i] +"</td>";
+                }
+                html += "</tr>";
+                html += "</table>";
+                list.innerHTML += html
+            })
+
+
+            // 재입력
+            document.querySelector("#bt1").addEventListener("click", function(){
+                // document.querySelector(body).reset();
+            })
+
+            
+        })
+    </script>
+</head>
+<body>
+    <h2>~ 복권 자동 추첨 ~</h2>
+    <div>
+        <div class="circle" id="c1">
+            <div class="a"></div>
+            <input type="text" class="text">
+        </div>
+        <div class="circle" id="c2">
+            <div class="a"></div>
+            <input type="text" class="text">
+        </div>
+        <div class="circle" id="c3">
+            <div class="a"></div>
+            <input type="text" class="text">
+        </div>
+        <div class="circle" id="c4">
+            <div class="a"></div>
+            <input type="text" class="text">
+        </div>
+        <div class="circle" id="c5">
+            <div class="a"></div>
+            <input type="text" class="text">
+        </div>
+        <div class="circle" id="c6">
+            <div class="a"></div>
+            <input type="text" class="text">
+        </div>
+    </div>
+
+    <div>
+        <input type="button" id="bt1" value="자동 뽑기">
+        <input type="" id="bt2" value="재입력">
+    </div>
+
+    
+    <div>
+        <div id="list">
+            <!-- <ul>
+                <li>
+                    document.querySelectorAll(".a")[i].innerHTML = lotto[i];
+                </li>
+            </ul> -->
+        </div>
+    </div>
+    
+</body>
+</html>

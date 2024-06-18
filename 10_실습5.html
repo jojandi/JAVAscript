@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        window.addEventListener("load", function(){
+            
+            document.querySelector("#calc").addEventListener("click", function(){
+                let year = document.querySelector("#year").value;
+
+                console.log(year);
+                document.querySelector("#age").textContent = new Date().getFullYear() - year + 1;
+
+            })
+
+        })
+    </script>
+</head>
+<body>
+    태어난 연도 : <input type="text" id="year" placeholder="2001">
+    <input type="button" id="calc" value="나이 계산">
+    <div id="age">
+    </div>
+</body>
+</html>

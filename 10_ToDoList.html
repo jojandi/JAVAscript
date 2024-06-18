@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ToDoList</title>
+    <style>
+        #top{
+            font-size: 0;
+            margin-bottom: 20px;
+        }
+        #input {
+            font-size: 18px;
+            width: 300px;
+            height: 30px;
+        }
+        #add{
+            height: 36px;
+            width: 36px;
+            font-size: 20px;
+        }
+    </style>
+    <script>
+        window.onload = function(){
+
+            let input = document.querySelector("#input");
+            input.addEventListener("keyup", function(evt){
+                // console.log(evt.keyCode);
+                if(evt.keyCode == 13){
+                    let add = document.querySelector("#add");
+                    add.click();
+                }
+            })
+
+            let add = document.querySelector("#add");
+            add.addEventListener("click", function(){
+                console.log(input.value)
+
+                let on = document.querySelector("#on");
+                // 한 줄로 써줘야 tag가 제대로 닫힘
+                // on.innerHTML += '<label id="label">'
+                // on.innerHTML += '<input type="checkbox" class="ch">'
+                // on.innerHTML += '<span class="todo">'+input.value+'</span>'
+                // on.innerHTML += '</label>'
+                // on.innerHTML += '<input type="button" class="del" value="X"><br>'
+                let html = ''
+                html += '<ul>'
+                html += '<li class="li">'
+                html += '<label class="label">'
+                html += '<input type="checkbox" class="ch">'
+                html += ' <span class="todo">'+input.value+'</span>'
+                html += '</label>'
+                html += ' <input type="button" class="del" value="X">'
+                html += '</il>'
+                html += '</ul>'
+                on.innerHTML += html
+                // console.log(html);
+                input.value = "";
+
+                // css
+                let li = document.querySelectorAll(".li")
+                for(let i = 0; i< li.length; i++){
+                    li[i].style.listStyle = "none";
+                    li[i].style.borderTop = "1px solid rgb(88, 88, 88)";
+                    li[i].style.borderBottom = "1px solid rgb(88, 88, 88)";
+                    li[i].style.width = "300px";
+                    li[i].style.fontSize = "18px";
+                }
+                let label = document.querySelectorAll(".label")
+                for(let i = 0; i< label.length; i++){
+                    label[i].style.width = "265px";
+                    label[i].style.display = "inline-block";
+                }
+                let del = document.querySelectorAll("#on .del")
+                for(let i = 0; i< del.length; i++){
+                    del[i].style.background = "white";
+                    del[i].style.border = "0px solid red"
+                    del[i].style.fontSize = "18px";
+                    del[i].style.color = "gray"
+                }
+            })
+            
+
+            
+            // 취소선
+            add.addEventListener("click", function(){
+                let ch = document.querySelectorAll(".ch");
+                for(let i = 0; i< ch.length; i++){
+                    ch[i].addEventListener('click', function(){
+                        // console.log(ch)
+                        for(let dom of ch){
+                            // console.log(dom.value, dom.checked);
+                            if(dom.checked){
+                                let todo = document.querySelectorAll(".todo");
+                                for(let j = 0; j< todo.length; j++){
+                                    todo[i].style.textDecoration = "line-through";
+                                }
+                            }
+                        }
+                    })
+                }
+               /*
+                let ch = document.querySelectorAll(".ch:checked");
+                for(let i = 0; i< ch.length; i++){
+                    console.log(ch[i]);
+                    if(ch[i]){
+                        let todo = document.querySelectorAll(".todo");
+                        for(let j = 0; j< todo.length; j++){
+                            todo[j].style.textDecoration = "line-through";
+                        }
+                    }
+                }
+                    */
+            })
+
+
+            // 개별 삭제
+            add.addEventListener("click", function(){
+                let del = document.querySelectorAll(".del");
+                for(let i = 0; i < del.length; i++){
+                    del[i].addEventListener('click', function(evt){
+                        evt.target.remove();
+                        let li = document.querySelectorAll(".li");
+                        for(let j = 0; j < li.length; j++){
+                            li[i].remove();
+                        }
+                    })
+                }
+            })
+
+            
+            //선택 삭제 - 실패..
+            add.addEventListener("click", function(){
+                let chdel = document.querySelector("#chdel");
+
+                chdel.addEventListener('click', function(){
+                    let ch = document.querySelectorAll(".ch");
+                    for(let dom of ch){
+                        
+                        if(dom.checked){
+                            console.log("삭제하자");
+                            dom.parentNode.remove();
+                        }
+                        
+                    }
+                })
+            })
+            
+
+
+            // 전체 삭제
+            add.addEventListener("click", function(){
+                let alldel = document.querySelector("#alldel");
+                alldel.addEventListener('click', function(){
+                        
+                let label = document.querySelectorAll(".label");
+                for(let j = 0; j < label.length; j++){
+                        label[j].parentNode.remove();
+                    }
+                })
+            })
+
+
+            // 전체 선택
+            add.addEventListener("click", function(){
+                let allch = document.querySelector("#allch");
+                // let ischecked = document.querySelector("#allch").checked;
+                allch.addEventListener('click', function(evt){
+                        
+                    let ch = document.querySelectorAll(".ch");
+                    for(let j = 0; j < ch.length; j++){
+                        ch[j].setAttribute("checked", "checked");
+                    }
+
+                    /*
+                    let todo = document.querySelectorAll(".todo");
+                    for(let j = 0; j< todo.length; j++){
+                        todo[j].style.textDecoration = "line-through";
+                    }
+                    */
+                })
+
+            })
+            
+        }
+    </script>
+</head>
+<body>
+    <h1>
+        ~ TO DO LIST ~
+    </h1>
+    <div id="top">
+    <input type="text" id="input" placeholder="할 일을 입력하세요.">
+    <input type="button" id="add" value="+"><br>
+    </div>
+    <label><input type="checkbox" id="allch">전체 선택</label>
+    <input type="button" id="alldel" value="전체 삭제">
+    <input type="button" id="chdel" value="선택 삭제"><br>
+    
+    <div>
+        <div id="on">
+            <!-- 으앙 -->
+        </div>
+    </div>
+
+</body>
+</html>

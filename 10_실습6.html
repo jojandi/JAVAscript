@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #game {
+            border: 1px solid red;
+            width: 500px;
+            height: 500px;
+
+            position: relative;
+        }
+        #game #char {
+            width: 100px;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+    </style>
+    <script>
+        window.addEventListener("load", function(){
+            let top = 0;
+            let left = 0;
+            document.querySelector("body").addEventListener("keyup", function(evt){
+                // console.log(evt.keyCode);
+                // up : 38, right : 39, down : 40, left : 37
+    
+                if(evt.keyCode == 39){ // 오른쪽
+                    left += 50;
+                    document.querySelector("#char").style.left = left + "px"
+                } else if(evt.keyCode == 37){ // 왼쪽
+                    left -= 50;
+                    document.querySelector("#char").style.left = left + "px"    
+                } else if(evt.keyCode == 38){ // 위
+                    top -= 50;
+                    document.querySelector("#char").style.top = top + "px"    
+                } else if(evt.keyCode == 40){ // 아래
+                    top += 50;
+                    document.querySelector("#char").style.top = top + "px"    
+                } 
+            })
+
+        })
+    </script>
+</head>
+<body>
+    <div id="game">
+        <img id="char" src="https://i.giphy.com/MGqYLloqVU93ndrFmT.webp">
+    </div>
+</body>
+</html>

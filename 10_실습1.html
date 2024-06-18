@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        window.addEventListener("load", function(){
+            let chk = document.querySelector("#chk");
+            chk.addEventListener("click", function(){
+                // 선생님 방식
+                // event.target.checked : 이벤트 타켓이 체크가 됐다면 ture
+                if(event.target.checked){
+                    let name = document.querySelector("#name").value;
+                    let con = document.querySelector("#con").value;
+                    let ad = document.querySelector("#ad").value;
+                    console.log(name);
+                    console.log(con);
+                    console.log(ad);
+                    document.querySelector("#name_").value = name;
+                    document.querySelector("#con_").value = con;
+                    document.querySelector("#ad_").value = ad;
+                } else{
+                    console.log("체크해제")
+                    document.querySelector("#name_").value = " ";
+                    document.querySelector("#con_").value = " ";
+                    document.querySelector("#ad_").value = " ";
+                }
+
+
+                // 내 방식
+                /*
+                let name = document.querySelector("#name").value;
+                let con = document.querySelector("#con").value;
+                let ad = document.querySelector("#ad").value;
+                console.log(name);
+                console.log(con);
+                console.log(ad);
+                document.querySelector("#name_").value = name;
+                document.querySelector("#con_").value = con;
+                document.querySelector("#ad_").value = ad;
+
+
+                // 다시 클릭했을 때 안 먹음
+                let chk_ = document.querySelector("#chk:checked");
+                console.log(chk_);
+                if(chk_){
+                    console.log(chk_);
+                    chk.addEventListener("click", function(){
+                    document.querySelector("#name_").value = "";
+                    document.querySelector("#con_").value = "";
+                    document.querySelector("#ad_").value = "";
+                })
+                }
+                */
+            })
+
+            document.querySelector("#name").addEventListener("keyup", function(evt){
+                if(evt.keyCode == 13){
+                    document.querySelector("#con").focus();
+                }
+            })
+            document.querySelector("#con").addEventListener("keyup", function(evt){
+                if(evt.keyCode == 13){
+                    document.querySelector("#ad").focus();
+                }
+            })
+            document.querySelector("#ad").addEventListener("keyup", function(evt){
+                if(evt.keyCode == 13){
+                    document.querySelector("#chk").click();
+                }
+            })
+        })
+    </script>
+</head>
+<body>
+    <fieldset>
+        <legend>
+            주문 정보
+        </legend>
+        <table>
+            <tr>
+                <td class="t">이름 : </td>
+                <td>
+                    <input type="text" id="name" placeholder="이름을 입력하세요.">
+                </td>
+            </tr>
+            <tr>
+                <td class="t">연락처 : </td>
+                <td>
+                    <input type="text" id="con" placeholder="010-0000-0000">
+                </td>
+            </tr>
+            <tr>
+                <td class="t">주소 : </td>
+                <td>
+                    <input type="text" id="ad" placeholder="주소를 입력하세요. ">
+                </td>
+            </tr>
+        </table>
+    </fieldset>
+    <fieldset>
+        <legend>
+            배송 정보
+        </legend>
+        <input type="checkbox" id="chk"> 주문 정보와 배송 정보가 같습니다. 
+        <table>
+            <tr>
+                <td class="t">이름 : </td>
+                <td>
+                    <input type="text" id="name_" placeholder="이름을 입력하세요.">
+                </td>
+            </tr>
+            <tr>
+                <td class="t">연락처 : </td>
+                <td>
+                    <input type="text" id="con_" placeholder="010-0000-0000">
+                </td>
+            </tr>
+            <tr>
+                <td class="t">주소 : </td>
+                <td>
+                    <input type="text" id="ad_" placeholder="주소를 입력하세요. ">
+                </td>
+            </tr>
+        </table>
+    </fieldset>
+</body>
+</html>

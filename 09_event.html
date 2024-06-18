@@ -279,6 +279,38 @@
                 }
             })
 
+
+
+            // checkbox의 check 여부 알기
+            document.querySelector("#btn4").addEventListener("click", function(){
+                // 방법 1 - 모든 요소(프로퍼티)의 체크 상태 점검
+                // querySelectorAll -> 배열이기 때문에 .value 사용 X -> 반복문 사용
+                let chk = document.querySelectorAll(".chk");
+
+                // 배열에서 꺼내서 변수에 넣음(dom = chk[0]...반복)
+                for(let dom of chk){
+                    if(dom.checked){ // checked가 됐다면 true
+                        console.log(dom.value, dom.checked);
+                    }
+                }
+
+                // 방법 2 : css의 ':checked' 이용하여 체크 된 것만 가져오기
+                let chk2 = document.querySelectorAll(".chk:checked");
+                console.log(chk2.length); // check된 것들의 갯수
+            })
+
+
+            let del = document.querySelectorAll(".del");
+            for(let i; i < del.length; i++){
+                del[i].addEventListener('click', function(evt){
+                    console.log(evt.target);
+
+                    // target된 것의 부모를 지움
+                    evt.target.parentNode.remove();
+                })
+            }
+
+
         }
     </script>
 </head>
@@ -311,5 +343,31 @@
         <input type="submit" value="검색">
     </form> 
 
+    <input type="button" id="btn4" value="토핑확인"><br>
+    <!-- value : 서버나 자바스크립트가 가져갈 수 있는 값 -->
+    <input type="checkbox" class="chk" value="udon"> 우동사리<br>
+    <input type="checkbox" class="chk" value="cake"> 떡<br>
+
+    <!-- 글씨를 눌러도 checked 됨 -->
+    <label><input type="checkbox" class="chk" value="china"> 중국당면</label><br>
+
+    <!-- for="id" -> 해당 id와 연결 -->
+    <input type="checkbox" id="bun" class="chk" value="cake"> 
+    <label for="bun">분모자</label>
+
+
+    <!-- 버튼 눌렀을 때 해당 div 삭제 -->
+     <div>
+        <span>우동사리</span>
+        <button type="button" class="del">X1</button>
+     </div>
+     <div>
+        <span>떡</span>
+        <button type="button" class="del">X2</button>
+     </div>
+     <div>
+        <span>중국당면</span>
+        <button type="button" class="del">X3</button>
+     </div>
 </body>
 </html>

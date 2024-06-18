@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #box{
+            width: 500px;
+            height: 500px;
+            border: 1px solid black;
+        }
+        .red {
+            background-color: red;
+        }
+        .green {
+            background-color: green;
+        }
+        .blue {
+            background-color: blue;
+        }
+        .pink {
+            background-color: pink;
+        }
+    </style>
+
+    <script>
+        window.addEventListener("load", function(){
+            
+            document.querySelector("#red").addEventListener("click", function(){
+                let box = document.querySelector("#box");
+                let red = box.classList.contains("red");
+                // console.log(red);
+                if(red){
+                    box.classList.remove("red");
+                    // console.log(red);
+                } else {
+                    // console.log(red);
+                    box.classList.add("red");
+                }
+            })
+
+            document.querySelector("#green").addEventListener("click", function(){
+                let box = document.querySelector("#box");
+                let green = box.classList.contains("green");
+                // console.log(green);
+                if(green){
+                    box.classList.remove("green");
+                    // console.log(green);
+                } else {
+                    // console.log(green);
+                    box.classList.add("green");
+                }
+            })
+
+            document.querySelector("#blue").addEventListener("click", function(){
+                let box = document.querySelector("#box");
+                let blue = box.classList.contains("blue");
+                // console.log(blue);
+                if(blue){
+                    box.classList.remove("blue");
+                    // console.log(blue);
+                } else {
+                    // console.log(blue);
+                    box.classList.add("blue");
+                }
+            })
+
+            document.querySelector("#pink").addEventListener("click", function(){
+                let box = document.querySelector("#box");
+                let pink = box.classList.contains("pink");
+                // console.log(pink);
+                if(pink){
+                    box.classList.remove("pink");
+                    // console.log(pink);
+                } else {
+                    // console.log(pink);
+                    box.classList.add("pink");
+                }
+            })
+
+        })
+    </script>
+</head>
+<body>
+    <div id="box">
+
+    </div>
+    <input id="red" type="button" value="빨강">
+    <input id="green" type="button" value="초록">
+    <input id="blue" type="button" value="파랑">
+    <input id="pink" type="button" value="핑크">
+</body>
+</html>

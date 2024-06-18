@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        window.addEventListener("load", function(){
+
+            let time = document.querySelector("#time");
+
+            // div 안에 컨텐츠 영역에 글씨 쓰기
+
+            // 방법 1
+            time.textContent = "textContent";
+
+            // 방법 2
+            time.innerText = "innerText";
+
+            // 방법 3
+            time.innerHTML = "innerHTML";
+
+
+            // innerText를 사용해서 시간 표시하기
+            time.innerText = ''
+
+            let now = new Date();
+            let h = now.getHours(); // 시
+            let m = now.getMinutes(); // 분
+            let s = now.getSeconds(); // 초
+
+            let hms = h + "시 " + m + "분 " + s + "초 ";
+
+            time.innerText = hms;
+
+            // 실시간으로 시간 바꾸기 - setInterval
+            // setInterval(function(){
+            //     let now = new Date();
+            //     let h = now.getHours(); // 시
+            //     let m = now.getMinutes(); // 분
+            //     let s = now.getSeconds(); // 초
+
+            //     // 한자리 숫자일 때 01, 02 처럼 나오게
+            //     // 방법 1
+            //     if(s < 10){
+            //         s = "0" + s;
+            //     }
+
+
+            //     let hms = h + "시 " + m + "분 " + s + "초 ";
+
+            //     time.innerText = hms;
+            // }, 1000 / 4)
+
+
+            // 실시간으로 시간 바꾸기 - setTimeout -> 정밀도 높아짐
+            time_refresh();              
+
+        })
+
+        function time_refresh(){
+            setTimeout(function(){
+                let now = new Date();
+                let h = now.getHours(); // 시
+                let m = now.getMinutes(); // 분
+                let s = now.getSeconds(); // 초
+
+                // 한자리 숫자일 때 01, 02 처럼 나오게
+                // 방법 1
+                if(s < 10){
+                    s = "0" + s;
+                }
+
+
+                let hms = h + "시 " + m + "분 " + s + "초 ";
+                let time = document.querySelector("#time");
+                time.innerText = hms;
+
+                time_refresh();
+            }, 1000 /4)
+
+        }
+    </script>
+</head>
+<body>
+    <div id="time"></div>
+</body>
+</html>
