@@ -17,7 +17,7 @@
             // 'serviceKey=' + '인증키'
             url += 'serviceKey=' + '1JRw7e0p3eJXgqyt839IW+iQenWQVyty571+UDSdivw4sPs+z83mxQpBUm2bSJNnSAHc7vghsPh7r2jVMsf+zg==';
             url += '&';
-            url += 'numOfRows=10';
+            url += 'numOfRows=1000';
             url += '&';
             url += 'pageNo=1';
             url += '&';
@@ -40,6 +40,11 @@
 
                 let json = JSON.parse(data);
                 console.log(json);
+
+                for(let i = 0; i < 6; i++){
+                    let T1H = json["response"]["body"]["items"]["item"][(i+24)]["fcstValue"];
+                    console.log("온도 :", T1H);
+                }
             }
         }
 
