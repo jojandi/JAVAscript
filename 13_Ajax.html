@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
     <script>
         window.addEventListener("load", function(){
             document.querySelector("#btn").addEventListener('click', function(){
@@ -11,6 +12,57 @@
             })
             document.querySelector("#btn2").addEventListener('click', function(){
                 doAjaxDaum();
+            })
+
+            // jquery 방식 1 - 전통적인 방식
+            $("#btn3").off("click").on("click", function(){
+                let option ={
+                    "url" : "https://jsonplaceholder.typicode.com/users",
+                    "type" : "get", // open
+                     
+                    "success" : function(data){ // 전달인자 : 다녀와서 받아온 것
+                        // 다녀오는 걸 성공했을 때
+                        console.log("성공");
+                        console.log(data);
+                    }, 
+                    "error" :  function(data){ // 전달인자 : 에러내용
+                        // 다녀오는 걸 실패했을 때
+                        console.log("실패");
+                        console.log(data);
+                    },
+                    "complete" : function(data){
+                        // 성공 여부에 관계없이 무조건 마지막에 실행
+                        console.log("complete");
+                        console.log(data);
+                    }
+
+                }
+                // json 형태로 보내줘야함, 변수로 넣기보단 직접 쓰는 경우가 더 많음
+                $.ajax(option);
+
+            })
+
+            // jquery 방식 2 - 요즘 쓰기 시작한 방식
+            $("#btn4").off("click").on("click", function(){
+                let option ={
+                    "url" : "https://jsonplaceholder.typicode.com/users",
+                    "type" : "get",
+                }
+
+                $.ajax(option)
+                .done(function(data){
+                    // done : json에서 success 키 지정하는 것과 같음
+                    console.log("성공");
+                    console.log(data);
+                }).fail(function(data){ 
+                    // fail : json에서 error 키 지정하는 것과 같음
+                    console.log("실패");
+                    console.log(data);
+                }).always(function(data){
+                    // always : json에서 complete 키 지정하는 것과 같음
+                    console.log("complete");
+                    console.log(data);
+                })
             })
         })
 
@@ -69,6 +121,8 @@
 </head>
 <body>
     <input type="button" id="btn" value="Ajax 실행">
-    <input type="button" id="btn2" value="daum.net">
+    <input type="button" id="btn2" value="daum.net"><br>
+    <input type="button" id="btn3" value="jquery ajax 방법1">
+    <input type="button" id="btn4" value="jquery ajax 방법2">
 </body>
 </html>

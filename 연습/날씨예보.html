@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>날씨 예보
+    </title>
+    <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+    <style>
+        #back {
+            background-image: url("data:image/png;base64,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");
+            background-size: cover;
+            background-repeat: no-repeat; 
+            width: 450px;
+            height: 600px;
+        }
+
+        #back .local {
+            position: absolute;
+            display: inline-block;
+            font-weight: bold;
+            color: rgb(56, 56, 56);
+        }  
+
+        #back .local .chk{
+            opacity: 0;
+            z-index: -10;
+            position: absolute;
+
+        }
+        
+        #back #seoul{ top : 122px; left: 144px; }
+        #back #incheon{ top : 128px; left: 108px; }
+        #back #gyeinggi{top : 148px; left: 170px; }
+        #back #gangwon{ top : 113px; left: 259px; }
+        #back #chungbuk{ top : 212px; left: 190px; }
+        #back #chungnam{ top : 240px; left: 96px; }
+        #back #daejeon{ top : 263px; left: 170px; }
+        #back #sejong{ top : 236px; left: 166px; }
+        #back #gyeingbuk{ top : 273px; left: 276px; }
+        #back #gyeingnam{ top : 377px; left: 237px; }
+        #back #jeolbuk{ top : 331px; left: 131px; }
+        #back #jeolnam{ top : 424px; left: 100px; }
+        #back #gwangju{ top : 394px; left: 108px; }
+        #back #deagu{ top : 329px; left: 275px; }
+        #back #ulsan{ top : 366px; left: 337px; }
+        #back #busan{ top : 401px; left: 320px; }
+        #back #jeju{ top : 557px; left: 60px; }
+        #back #ulleung{ top : 147px; left: 400px; }
+
+        #back .info {
+            /* display: none; */
+            position: relative;
+            top : -107px;
+            left: -51px;
+            z-index: 1000;
+        }
+
+        #back .box{
+            width: 130px;
+            height: 60px;
+            border-radius: 10px;
+            /* border: 1px solid black; */
+            background: rgb(241, 241, 241);
+
+            text-align: center;
+            display: flex;
+            justify-content: space-around;
+            box-shadow: 5px 5px 3px rgba(184, 184, 184, 0.4);
+        }
+        
+        #back .triangle {
+            width: 15px;
+            height: 15px;
+            background: rgb(241, 241, 241);
+            position: relative;
+            /* border: 1px solid black; */
+            top : 67px;
+            left: 59px;
+            transform: rotate(45deg);
+            z-index: 10;
+            box-shadow: 5px 5px 3px rgba(184, 184, 184, 0.4);
+        }
+        
+        .box .b1, .box .b2{
+            font-size: 16px;
+            /* border: 1px solid red; */
+            display: inline-block;
+        }
+        .box .b1 span, .box .b2 span{
+            display: inline-block;
+            font-size: 12px;
+            margin-bottom: 5px;
+            margin-top: 8px;
+        }
+
+    </style>
+    <script>
+        let now = new Date();
+        let y = now.getFullYear(),
+            m = now.getMonth(),
+            d = now.getDate();
+        let day = String(y) + "0" +String(m+1) + String(d);
+        console.log(day);
+
+        window.addEventListener("load", function(){
+            document.querySelector("#chk_seo").addEventListener("click", function(){
+                if($("#chk_seo").prop("checked")){
+                    seo();
+                    console.log("서울");
+                } else{
+                    out();
+                    console.log("서울 해체");
+                }
+            })
+            document.querySelector("#chk_in").addEventListener("click", function(){
+                if($("#chk_in").prop("checked")){
+                    incheon();
+                    console.log("인천");
+                } else{
+                    out();
+                    console.log("인천 해제");
+                }
+            })
+        })
+
+        let url =""
+        function forecast(){
+            url = 'http://apis.data.go.kr/1360000/VilageFcstInfoService_2.0/getVilageFcst';
+            url += '?';
+            url += 'serviceKey=' + '1JRw7e0p3eJXgqyt839IW%2BiQenWQVyty571%2BUDSdivw4sPs%2Bz83mxQpBUm2bSJNnSAHc7vghsPh7r2jVMsf%2Bzg%3D%3D';
+            url += '&';
+            url += 'numOfRows=255';
+            url += '&';
+            url += 'pageNo=1';
+            url += '&';
+            url += 'dataType=JSON';
+            url += '&';
+            url += 'base_date='+day;
+            url += '&';
+            url += 'base_time=0200';
+            url += '&';
+        }
+
+        function th(){
+            let xhr = new XMLHttpRequest(); 
+            xhr.open("get", url); 
+            xhr.send();
+            xhr.onload = function(){
+                let json = JSON.parse(xhr.responseText);
+                let item = json.response.body.items.item;
+                let html = ""
+            
+                for(let i = 0; i < item.length; i++){
+                    if(item[i].category == "TMN"){ // 일 최저기온
+                        let time = item[i].fcstTime;
+                        let TMN = item[i].fcstValue
+                        console.log(TMN+"℃");
+                        console.log(time);
+                        let html = "";
+                        html += "<div>"
+                        html += "<span>최저기온</span><br>"
+                        html += TMN+"℃"
+                        html += "</div>"
+                        document.querySelector(".b1").innerHTML += html;
+                    }
+                    if(item[i].category == "TMX"){ // 일 최고기온
+                        let time = item[i].fcstTime;
+                        let TMX = item[i].fcstValue;
+                        console.log(TMX+"℃");
+                        console.log(time);
+                        let html = "";
+                        html += "<div>"
+                        html += "<span>최고기온</span><br>"
+                        html += TMX+"℃"
+                        html += "</div>"
+                        document.querySelector(".b2").innerHTML += html;                    
+                    }
+                }
+                html = ""
+            }
+        }
+
+        let html_ = ""
+        function info(){
+            html_ += '<div class="info">'
+            html_ += '<div class="triangle">'
+            html_ += '</div>'
+            html_ += '<div class="box">'
+            html_ += '<div class="b1">'
+            html_ += '</div>'
+            html_ += '<div class="b2">'
+            html_ += '</div>'
+            html_ += '</div>'
+            html_ += '</div>'
+            // 지역은 항상 바꿔줘야함.... 함수로 어케 빼야할ㄲㅏ...
+        }
+        
+        function seo(){
+            forecast();
+            info();
+            url += 'nx=60';
+            url += '&';
+            url += 'ny=127';
+            th();
+            document.querySelector("#info_seo").innerHTML = html_;
+            html_ = ""
+        }
+
+        function incheon(){
+            forecast();
+            info();
+            url += 'nx=55';
+            url += '&';
+            url += 'ny=124';
+            th();
+            document.querySelector("#info_in").innerHTML = html_;
+            html_ = ""
+        }
+        
+        function out(){
+            $("#back .info").css("display", "none");
+        }
+    </script>
+</head>
+<body>
+    <div id="back">
+        <div class="local" id="seoul">
+            <label>
+                <input type="checkbox" class="chk" id="chk_seo">서울
+            </label>
+            <div id="info_seo">
+
+            </div>
+        </div>
+        <div class="local" id="incheon">
+            <label>
+                <input type="checkbox" class="chk" id="chk_in"> 인천
+            </label>
+            <div id="info_in">
+
+            </div>
+        </div>
+        <div class="local" id="gyeinggi">
+            경기도
+        </div>
+        <div class="local" id="gangwon">
+            강원도
+        </div>
+        <div class="local" id="chungbuk">
+            충청북도
+        </div>
+        <div class="local" id="chungnam">
+            충청남도
+        </div>
+        <div class="local" id="daejeon">
+            대전
+        </div>
+        <div class="local" id="sejong">
+            세종
+        </div>
+        <div class="local" id="gyeingbuk">
+            경상북도
+        </div>
+        <div class="local" id="gyeingnam">
+            경상남도
+        </div>
+        <div class="local" id="jeolbuk">
+            전라북도
+        </div>
+        <div class="local" id="jeolnam">
+            전라남도
+        </div>
+        <div class="local" id="gwangju">
+            광주
+        </div>
+        <div class="local" id="deagu">
+            대구
+        </div>
+        <div class="local" id="ulsan">
+            울산
+        </div>
+        <div class="local" id="busan">
+            부산
+        </div>
+        <div class="local" id="jeju">
+            제주도
+        </div>
+        <div class="local" id="ulleung">
+            울릉도
+        </div>
+    </div>
+    
+</body>
+</html>

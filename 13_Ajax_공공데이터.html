@@ -15,7 +15,7 @@
             let url = 'http://apis.data.go.kr/1360000/VilageFcstInfoService_2.0/getUltraSrtFcst';
             url += '?';
             // 'serviceKey=' + '인증키'
-            url += 'serviceKey=' + '1JRw7e0p3eJXgqyt839IW+iQenWQVyty571+UDSdivw4sPs+z83mxQpBUm2bSJNnSAHc7vghsPh7r2jVMsf+zg==';
+            url += 'serviceKey=' + '1JRw7e0p3eJXgqyt839IW%2BiQenWQVyty571%2BUDSdivw4sPs%2Bz83mxQpBUm2bSJNnSAHc7vghsPh7r2jVMsf%2Bzg%3D%3D';
             url += '&';
             url += 'numOfRows=1000';
             url += '&';
@@ -23,28 +23,76 @@
             url += '&';
             url += 'dataType=JSON';
             url += '&';
-            url += 'base_date=20240618';
+            url += 'base_date=20240619';
             url += '&';
-            url += 'base_time=0630';
+            url += 'base_time=0830';
             url += '&';
             url += 'nx=63';
             url += '&';
             url += 'ny=110';
 
-            let xhr = new XMLHttpRequest();
-            xhr.open("get", url);
-            xhr.send();
-            xhr.onload = function(){
-                let data = xhr.responseText;
+            let xhr = new XMLHttpRequest(); // 생성
+            xhr.open("get", url); // 열고
+            xhr.send(); // 보내기
+            xhr.onload = function(){ // 보낸 내용 받아오면~
+                let data = xhr.responseText; // xhr.responseText : 받아온 내용이 들어옴
                 // console.log(data);
 
                 let json = JSON.parse(data);
                 console.log(json);
 
-                for(let i = 0; i < 6; i++){
-                    let T1H = json["response"]["body"]["items"]["item"][(i+24)]["fcstValue"];
-                    console.log("온도 :", T1H);
+                /* 내가 혼자 연습한 것
+                // for(let i = 0; i < 6; i++){
+                //     let T1H = json["response"]["body"]["items"]["item"][(i+24)]["fcstValue"];
+                //     let time = json["response"]["body"]["items"]["item"][(i+24)]["fcstTime"];
+                //     console.log("시간 :", time, "| 온도 :", T1H);
+                // }
+                */
+
+                let info_view = document.querySelector("#info_view");
+
+                
+                let item = json.response.body.items.item;
+                for(let i = 0; i < item.length; i++){
+                    
+                    if(item[i].category == "T1H"){
+                        console.log(item[i]);
+
+                        let html = `
+                                    <tr>
+                                        <td>온도 : </td>
+                                        <td>${item[i].fcstDate}</td>
+                                        <td>${item[i].fcstTime}</td>
+                                        <td>${item[i].fcstValue}</td>
+                                    </tr>   
+                        `;
+
+                        info_view.innerHTML += html;
+
+                    } else if(item[i].category == "REH"){
+                        console.log(item[i]);
+
+                        let html = `
+                                    <tr>
+                                        <td>습도 : </td>
+                                        <td>${item[i].fcstDate}</td>
+                                        <td>${item[i].fcstTime}</td>
+                                        <td>${item[i].fcstValue}</td>
+                                    </tr>   
+                        `;
+
+                        info_view.innerHTML += html;
+                    }
                 }
+
+                /*
+                // 아래 내용이 true인 것만 배열로 받아옴
+                let filtered = item.filter(function(info){
+                    return info.category == "RN1" || info.category == "REH";
+                    // true or false return
+                })
+                console.log(filtered);
+                */
             }
         }
 
@@ -53,5 +101,16 @@
 </head>
 <body>
     <button type="button" id="btn">초단기예보조회</button>
+
+    <table>
+        <tbody id="info_view">
+            <!-- <tr>
+                <td>RN1</td>
+                <td>20240619</td>
+                <td>140000</td>
+                <td>강수없음</td>
+            </tr> -->
+        </tbody>
+    </table>
 </body>
 </html>
